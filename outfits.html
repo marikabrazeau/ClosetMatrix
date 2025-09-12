@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Outfit Studio - Create and Design Your Perfect Looks">
+    <title>Outfit Studio - Closet Matrix</title>
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="aritziastyle.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Closet Matrix</a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html#wardrobe">Wardrobe</a></li>
+                <li><a href="#outfits">Outfits</a></li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="index.html#stats">Stats</a></li>
+            </ul>
+            
+            <div class="nav-icons">
+                <a href="#" aria-label="Search">🔍</a>
+                <a href="#" aria-label="Add Item">➕</a>
+                <a href="myprofile.html" aria-label="Profile">👤</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- AI-Powered Outfit Studio -->
+        <section class="outfit-studio">
+            <div class="studio-header">
+                <h1 class="studio-title">Outfit Studio</h1>
+                <p class="studio-subtitle">Create, visualize, and perfect your looks</p>
+            </div>
+
+            <div class="studio-workspace">
+                <!-- Virtual Mirror -->
+                <div class="virtual-mirror">
+                    <div class="mirror-frame">
+                        <div class="mirror-content">
+                            <div class="avatar-silhouette">
+                                <div class="outfit-layer" id="top-layer"></div>
+                                <div class="outfit-layer" id="bottom-layer"></div>
+                                <div class="outfit-layer" id="shoes-layer"></div>
+                                <div class="outfit-layer" id="outer-layer"></div>
+                            </div>
+                            <div class="mirror-overlay">
+                                <span class="mirror-prompt">Select items to preview your outfit</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mirror-controls">
+                        <button class="control-btn" id="ai-suggest" title="AI Suggestions">
+                            <span class="icon">✨</span>
+                            <span>AI Assist</span>
+                        </button>
+                        <button class="control-btn" id="color-match" title="Color Harmony">
+                            <span class="icon">🎨</span>
+                            <span>Colors</span>
+                        </button>
+                        <button class="control-btn" id="style-check" title="Style Analysis">
+                            <span class="icon">📊</span>
+                            <span>Analysis</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Smart Wardrobe Panel -->
+                <div class="smart-wardrobe">
+                    <div class="wardrobe-header">
+                        <h3>Smart Wardrobe</h3>
+                        <div class="view-toggle">
+                            <button class="toggle-btn active" data-view="grid">⊞</button>
+                            <button class="toggle-btn" data-view="list">☰</button>
+                        </div>
+                    </div>
+                    
+                    <div class="wardrobe-filters">
+                        <div class="filter-chips">
+                            <button class="chip active" data-category="all">All</button>
+                            <button class="chip" data-category="tops">Tops</button>
+                            <button class="chip" data-category="bottoms">Bottoms</button>
+                            <button class="chip" data-category="dresses">Dresses</button>
+                            <button class="chip" data-category="shoes">Shoes</button>
+                            <button class="chip" data-category="outerwear">Outer</button>
+                        </div>
+                        <div class="filter-advanced">
+                            <input type="text" placeholder="Search items..." class="search-input">
+                            <button class="filter-btn">
+                                <span>Filters</span>
+                                <span class="filter-count">3</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="wardrobe-items" id="wardrobe-grid">
+                        <!-- Dynamic wardrobe items -->
+                        <div class="wardrobe-item" data-category="tops">
+                            <div class="item-image">
+                                <img src="images/sample-top.jpg" alt="White Silk Blouse" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmOGY5ZmEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlOWVjZWYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNnKSIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjIwIiBmaWxsPSIjZGVlMmU2Ii8+PC9zdmc+'" loading="lazy">
+                                <div class="item-overlay">
+                                    <button class="quick-add">+</button>
+                                </div>
+                            </div>
+                            <div class="item-details">
+                                <h4>White Silk Blouse</h4>
+                                <span class="item-tags">Professional • Silk</span>
+                            </div>
+                        </div>
+
+                        <div class="wardrobe-item" data-category="bottoms">
+                            <div class="item-image">
+                                <img src="images/sample-bottom.jpg" alt="Black Tailored Trousers" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzNDM0MzQiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxYTFhMWEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHg9IjMwIiB5PSI0MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjNGE0YTRhIi8+PC9zdmc+'" loading="lazy">
+                                <div class="item-overlay">
+                                    <button class="quick-add">+</button>
+                                </div>
+                            </div>
+                            <div class="item-details">
+                                <h4>Black Tailored Trousers</h4>
+                                <span class="item-tags">Professional • Wool</span>
+                            </div>
+                        </div>
+
+                        <div class="wardrobe-item" data-category="shoes">
+                            <div class="item-image">
+                                <img src="images/sample-shoes.jpg" alt="Leather Pumps" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4YjQ1MTMiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2ZjM0MGMiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0idXJsKCNnKSIvPjxlbGxpcHNlIGN4PSI2MCIgY3k9IjcwIiByeD0iMzAiIHJ5PSIxNSIgZmlsbD0iI2E1NTkyOCIvPjwvc3ZnPg=='" loading="lazy">
+                                <div class="item-overlay">
+                                    <button class="quick-add">+</button>
+                                </div>
+                            </div>
+                            <div class="item-details">
+                                <h4>Leather Pumps</h4>
+                                <span class="item-tags">Professional • Leather</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outfit Actions Bar -->
+            <div class="actions-bar">
+                <div class="action-group">
+                    <button class="action-btn secondary" id="clear-outfit">
+                        <span class="icon">🗑</span>
+                        Clear
+                    </button>
+                    <button class="action-btn secondary" id="shuffle-outfit">
+                        <span class="icon">🔀</span>
+                        Shuffle
+                    </button>
+                </div>
+                
+                <div class="action-group primary">
+                    <button class="action-btn" id="save-outfit">
+                        <span class="icon">💾</span>
+                        Save Outfit
+                    </button>
+                    <button class="action-btn" id="share-outfit">
+                        <span class="icon">📤</span>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outfit Collections -->
+        <section class="outfit-collections">
+            <div class="collections-header">
+                <h2>Your Collections</h2>
+                <button class="new-collection-btn">
+                    <span class="icon">+</span>
+                    New Collection
+                </button>
+            </div>
+            
+            <div class="collections-grid">
+                <div class="collection-card featured">
+                    <div class="collection-preview">
+                        <div class="preview-stack">
+                            <div class="preview-item item-1"></div>
+                            <div class="preview-item item-2"></div>
+                            <div class="preview-item item-3"></div>
+                        </div>
+                    </div>
+                    <div class="collection-info">
+                        <h3>Professional Looks</h3>
+                        <p>12 outfits</p>
+                        <span class="collection-tag">Work</span>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-preview">
+                        <div class="preview-stack">
+                            <div class="preview-item casual-1"></div>
+                            <div class="preview-item casual-2"></div>
+                            <div class="preview-item casual-3"></div>
+                        </div>
+                    </div>
+                    <div class="collection-info">
+                        <h3>Weekend Casual</h3>
+                        <p>8 outfits</p>
+                        <span class="collection-tag">Casual</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Outfit Studio JavaScript -->
+    <script>
+        let currentOutfit = {top: null, bottom: null, shoes: null, outer: null};
+
+        document.addEventListener('DOMContentLoaded', initializeStudio);
+
+        function initializeStudio() {
+            initializeWardrobeItems();
+            initializeFilters();
+            initializeControls();
+            initializeViewToggle();
+        }
+
+        function initializeWardrobeItems() {
+            document.querySelectorAll('.wardrobe-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const itemData = {
+                        category: this.dataset.category,
+                        name: this.querySelector('h4').textContent,
+                        image: this.querySelector('img').src,
+                        element: this
+                    };
+                    addToOutfit(itemData);
+                    this.classList.add('selected');
+                });
+                
+                item.querySelector('.quick-add').addEventListener('click', e => {
+                    e.stopPropagation();
+                    item.click();
+                });
+            });
+        }
+
+        function addToOutfit(item) {
+            if (currentOutfit[item.category]) {
+                currentOutfit[item.category].element.classList.remove('selected');
+            }
+            currentOutfit[item.category] = item;
+            updateMirror();
+            showNotification(`Added ${item.name} to outfit`);
+        }
+
+        function updateMirror() {
+            const mirrorOverlay = document.querySelector('.mirror-overlay');
+            const hasItems = Object.values(currentOutfit).some(item => item !== null);
+            mirrorOverlay.style.opacity = hasItems ? '0' : '1';
+            
+            ['top', 'bottom', 'shoes', 'outer'].forEach(category => {
+                const layer = document.getElementById(`${category}-layer`);
+                const item = currentOutfit[category];
+                layer.style.backgroundImage = item ? `url(${item.image})` : 'none';
+                layer.style.opacity = item ? '1' : '0';
+            });
+        }
+
+        function initializeFilters() {
+            document.querySelectorAll('.chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    filterItems(this.dataset.category);
+                });
+            });
+
+            document.querySelector('.search-input').addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                document.querySelectorAll('.wardrobe-item').forEach(item => {
+                    const name = item.querySelector('h4').textContent.toLowerCase();
+                    const tags = item.querySelector('.item-tags').textContent.toLowerCase();
+                    item.style.display = (name.includes(query) || tags.includes(query)) ? 'block' : 'none';
+                });
+            });
+        }
+
+        function filterItems(category) {
+            document.querySelectorAll('.wardrobe-item').forEach(item => {
+                item.style.display = (category === 'all' || item.dataset.category === category) ? 'block' : 'none';
+            });
+        }
+
+        function initializeControls() {
+            document.getElementById('ai-suggest').addEventListener('click', () => showNotification('AI suggestions coming soon!'));
+            document.getElementById('color-match').addEventListener('click', () => showNotification('Color harmony analysis coming soon!'));
+            document.getElementById('style-check').addEventListener('click', analyzeOutfit);
+            document.getElementById('clear-outfit').addEventListener('click', clearOutfit);
+            document.getElementById('save-outfit').addEventListener('click', saveOutfit);
+            document.getElementById('share-outfit').addEventListener('click', shareOutfit);
+            document.getElementById('shuffle-outfit').addEventListener('click', shuffleOutfit);
+        }
+
+        function initializeViewToggle() {
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('wardrobe-grid').className = `wardrobe-items ${this.dataset.view}-view`;
+                });
+            });
+        }
+
+        function clearOutfit() {
+            Object.keys(currentOutfit).forEach(key => {
+                if (currentOutfit[key]) {
+                    currentOutfit[key].element.classList.remove('selected');
+                    currentOutfit[key] = null;
+                }
+            });
+            updateMirror();
+            showNotification('Outfit cleared');
+        }
+
+        function saveOutfit() {
+            const hasItems = Object.values(currentOutfit).some(item => item !== null);
+            if (!hasItems) {
+                showNotification('Add some items to your outfit first!', 'warning');
+                return;
+            }
+            showNotification('Outfit saved to your collections!');
+        }
+
+        function shareOutfit() {
+            const hasItems = Object.values(currentOutfit).some(item => item !== null);
+            if (!hasItems) {
+                showNotification('Add some items to your outfit first!', 'warning');
+                return;
+            }
+            showNotification('Outfit shared!');
+        }
+
+        function shuffleOutfit() {
+            clearOutfit();
+            const items = Array.from(document.querySelectorAll('.wardrobe-item'));
+            ['tops', 'bottoms', 'shoes'].forEach(category => {
+                const categoryItems = items.filter(item => item.dataset.category === category);
+                if (categoryItems.length > 0) {
+                    categoryItems[Math.floor(Math.random() * categoryItems.length)].click();
+                }
+            });
+            showNotification('Outfit shuffled!');
+        }
+
+        function analyzeOutfit() {
+            const hasItems = Object.values(currentOutfit).some(item => item !== null);
+            if (!hasItems) {
+                showNotification('Add some items to analyze your outfit!', 'warning');
+                return;
+            }
+            const analyses = ['Great color coordination! 🎨', 'Perfect for professional settings 💼', 'Excellent balance of casual and chic ✨', 'This outfit works for multiple seasons 🌟'];
+            showNotification(`Style Analysis: ${analyses[Math.floor(Math.random() * analyses.length)]}`);
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -4,8 +4,10 @@
  * Requires user authentication
  */
 
-// Check if user is authenticated
+// Start session and check authentication
+session_start();
 require_once 'php/check-auth.php';
+require_once 'php/auth.php';
 
 // Get current user information
 $currentUser = Auth::getCurrentUser();
@@ -22,7 +24,7 @@ $currentUser = Auth::getCurrentUser();
     <link rel="stylesheet" href="aritziastyle.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Favicon removed to fix HTTPS security warning -->
 </head>
 <body>
     <!-- Header -->

@@ -22,7 +22,7 @@ $userInitials = strtoupper(substr($currentUser['first_name'], 0, 1) . substr($cu
     <link rel="stylesheet" href="aritziastyle.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Favicon removed to fix HTTPS security warning -->
 </head>
 <body>
     <!-- Header -->

@@ -19,7 +19,6 @@ $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
 $agreeTerms = isset($_POST['agree_terms']);
-$newsletter = isset($_POST['newsletter']);
 
 // Validation
 $errors = [];
@@ -112,8 +111,8 @@ try {
     
     // Insert new user
     $stmt = $db->prepare("
-        INSERT INTO users (username, email, password_hash, first_name, last_name, newsletter_subscribed, created_at) 
-        VALUES (?, ?, ?, ?, ?, ?, NOW())
+        INSERT INTO users (username, email, password_hash, first_name, last_name) 
+        VALUES (?, ?, ?, ?, ?)
     ");
     
     $stmt->execute([
@@ -121,8 +120,7 @@ try {
         $email,
         $passwordHash,
         $firstName,
-        $lastName,
-        $newsletter ? 1 : 0
+        $lastName
     ]);
     
     // Get the new user ID

@@ -7,11 +7,40 @@
 // Simple connection test (before using the config.php classes)
 echo "🧪 Testing Database Connection...\n\n";
 
-// Database credentials (update these with your actual values)
-$host = 'localhost';
-$dbname = 'closet_matrix_db';
-$username = 'closet_user';  // or 'root' for testing
-$password = 'your_secure_password';  // your actual password
+// Load environment variables from .env file
+if (!function_exists('loadEnv')) {
+    function loadEnv($filePath) {
+        if (!file_exists($filePath)) {
+            throw new Exception('.env file not found at: ' . $filePath);
+        }
+        
+        $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            if (strpos(trim($line), '#') === 0) {
+                continue; // Skip comments
+            }
+            
+            list($name, $value) = explode('=', $line, 2);
+            $name = trim($name);
+            $value = trim($value);
+            
+            if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
+                putenv(sprintf('%s=%s', $name, $value));
+                $_ENV[$name] = $value;
+                $_SERVER[$name] = $value;
+            }
+        }
+    }
+}
+
+// Load environment variables
+loadEnv(__DIR__ . '/.env');
+
+// Database credentials from environment
+$host = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASSWORD');
 
 try {
     echo "1️⃣ Testing basic PDO connection...\n";
@@ -41,7 +70,7 @@ try {
     }
     
     // Check required tables
-    $requiredTables = ['users', 'login_attempts', 'user_sessions', 'user_preferences'];
+    $requiredTables = ['users', 'login_attempts', 'user_sessions', 'clothing_items', 'outfits', 'outfit_items', 'calendar_events'];
     $missingTables = array_diff($requiredTables, $tables);
     
     if (empty($missingTables)) {
@@ -84,28 +113,20 @@ try {
     echo "4️⃣ Testing application config...\n";
     
     // Test the application's config file
-    if (file_exists('php/config.php')) {
+    if (file_exists('config.php')) {
         try {
-            require_once 'php/config.php';
+            require_once 'config.php';
             echo "✅ Config file loaded successfully!\n";
             
             // Test Database class
             $db = Database::getInstance()->getConnection();
             echo "✅ Database class working!\n";
             
-            // Test Auth class
-            echo "✅ Auth class loaded!\n";
-            
-            // Test Security class
-            $testEmail = 'test@example.com';
-            $isValid = Security::validateEmail($testEmail);
-            echo "✅ Security class working! (Email validation: " . ($isValid ? 'passed' : 'failed') . ")\n";
-            
         } catch (Exception $e) {
             echo "❌ Config file error: " . $e->getMessage() . "\n";
         }
     } else {
-        echo "⚠️ Config file not found at php/config.php\n";
+        echo "⚠️ Config file not found at config.php\n";
     }
     
     echo "\n🎉 Database setup test complete!\n";
@@ -113,7 +134,7 @@ try {
     echo "   - Database connection: ✅ Working\n";
     echo "   - Required tables: " . (empty($missingTables) ? "✅ All present" : "❌ Some missing") . "\n";
     echo "   - User preferences: " . (empty($missingPrefColumns) ? "✅ Configured" : "❌ Needs setup") . "\n";
-    echo "   - Application config: " . (file_exists('php/config.php') ? "✅ Found" : "❌ Missing") . "\n";
+    echo "   - Application config: " . (file_exists('config.php') ? "✅ Found" : "❌ Missing") . "\n";
     
     if (empty($missingTables) && empty($missingPrefColumns)) {
         echo "\n🚀 Ready to test your login system!\n";

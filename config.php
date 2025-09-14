@@ -30,8 +30,10 @@ if (!function_exists('loadEnv')) {
     }
 }
 
-// Load environment variables
-loadEnv(__DIR__ . '/.env');
+// Load environment variables if .env file exists
+if (file_exists(__DIR__ . '/.env')) {
+    loadEnv(__DIR__ . '/.env');
+}
 
 class Database {
     private static $instance = null;
@@ -39,13 +41,14 @@ class Database {
     
     private function __construct() {
         try {
+            // Use environment variables if available, otherwise fallback to XAMPP defaults
             $host = getenv('DB_HOST') ?: 'localhost';
-            $dbname = getenv('DB_NAME');
-            $username = getenv('DB_USER');
-            $password = getenv('DB_PASSWORD');
+            $dbname = getenv('DB_NAME') ?: 'closet_matrix_db';
+            $username = getenv('DB_USER') ?: 'root';
+            $password = getenv('DB_PASSWORD') ?: '';
             
-            if (!$dbname || !$username || !$password) {
-                throw new Exception('Database credentials not found in environment variables');
+            if (!$dbname || !$username) {
+                throw new Exception('Database configuration error');
             }
             
             $this->connection = new PDO(
